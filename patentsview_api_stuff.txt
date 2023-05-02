@@ -1,0 +1,42 @@
+https://patentsview.org/apis/api-query-language#sort_parameter
+
+https://stackoverflow.com/questions/6386308/http-requests-and-json-parsing-in-python
+
+#### get all pages/results - 
+https://stackoverflow.com/questions/63089935/python-requests-get-json-data-with-pagination
+url = 'secret_url?page={}'
+page_number = 1
+data = requests.get(url.format(page_number), headers=headers).json()
+total_pages = data['pages']['pages']
+for page_number in range(page, total_pages + 1):
+    data = requests.get(url.format(page_number), headers=headers).json()
+
+
+
+Return all patent numbers and titles after 2006 where the inventor's last name was "Jobs" and the assignee was based in the US.
+
+https://api.patentsview.org/patents/query?q={"_and":[{"_gte":{"patent_date":"2006-01-01"}},{"inventor_last_name":"Jobs"},{"assignee_lastknown_country":"US"}]}&f=["patent_number", "patent_title"]
+
+Return the patent number, processing time, and patent kind for patents granted after 2001 that have the word "international" in the abstract and have a foreign company or corporation assignee.
+
+https://api.patentsview.org/patents/query?q={"_and": [{"_gte":{"patent_date":"2001-01-01"}},{"_text_any":{"patent_abstract":"international"}},{"_neq":{"assignee_lastknown_country":"US"}}]}&f=["patent_number","patent_processing_time","patent_kind"]
+
+
+
+
+https://api.patentsview.org/patents/query?q={"_or": [{"_text_all":[{"patent_abstract":"international"}{"patent_title":"pizza"}]}]}&f=["patent_title","patent_abstract","patent_number", "patent_kind", "date"]
+
+
+
+
+https://api.patentsview.org/patents/query?q={"_or": [{"_text_all":{"patent_abstract":"international"}},{"_text_all":{"patent_title":"pizza"}}]}&f=["patent_title","patent_abstract","patent_number", "patent_kind", "patent_date"]
+
+
+
+https://api.patentsview.org/patents/query?q={"_or": [{"_text_all":{"patent_abstract":"international"}},{"_text_all":{"patent_title":"pizza"}}]}
+
+
+{"_gte":{"patent_date":"2007-01-04"}}
+# o={"page":2,"per_page":50}
+
+https://api.patentsview.org/patents/query?q={"_and": [{"_gte":{"patent_date":"2001-01-01"}},{"_or": [{"_text_all":{"patent_abstract":"international"}},{"_text_all":{"patent_title":"pizza"}}]}]}&f=["patent_number", "patent_date"]&o={"per_page":10000}
