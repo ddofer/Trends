@@ -17,3 +17,11 @@ https://arxiv.org/abs/2305.04133
       primaryClass={cs.DL}
 }
 ```
+
+A website to access the predictions is in progress and will also be made available. 
+
+Replicating the pipeline:
+* [OPTIONAL: For adding your own data]: Download datasets of terms results from PubmedByYear manually, using URLs constructed in `PrepData_Trends.ipynb` notebook (click links) - can also add additional topics here. This will output the training data `trends_v6.csv.gz` and long term historical context (`trends_context_v6.csv.gz`) (used for additional features) files.
+      * Training data and context is already provided in this repo.
+* Modelling results and evaluation: `plot trend pred + CV-V2023.ipynb`
+* Analysis of Patents leading future publications, with CRISPR as an use-case: `crispr_patent_paper_Corr.ipynb`
